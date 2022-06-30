@@ -1,5 +1,9 @@
 """
-Sandboxing: https://stackoverflow.com/questions/1224708/how-can-i-create-a-secure-lua-sandbox
+Sandboxing:
+- https://stackoverflow.com/questions/1224708/how-can-i-create-a-secure-lua-sandbox
+- https://github.com/scrapinghub/splash/blob/master/splash/lua_modules/sandbox.lua
+- https://github.com/scoder/lupa/issues/47
+
 
 Model:
 - A separate thread (a subprocess should work) is provisioned for executing the lua

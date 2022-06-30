@@ -16,6 +16,4 @@ class Item(DAO):
     async def set(self, key, val):
         """Set an attribute"""
         self.__attrs[key] = val
-        # update in the DB
-        print("Sleeping 5 seconds")
-        await asyncio.sleep(5)
+        # Update the db
