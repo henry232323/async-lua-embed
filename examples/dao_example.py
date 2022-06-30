@@ -2,7 +2,7 @@ import asyncio
 
 import aiohttp as aiohttp
 
-from src.async_lua import DAO, Environment, CommandExecutor
+from async_lua import DAO, Environment, CommandExecutor
 
 
 class Pokemon(DAO):

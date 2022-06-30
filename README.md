@@ -3,12 +3,19 @@ This small package is intended to provide the tools to allow the embedding of us
 an async environment. This package allows the definition and execution of asynchronous Python functions
 and methods in the user defined scripts, which may allow users to interface with things like Discord bot
 
+### Installation
+
+```shell
+python -m pip install git+https://github.com/henry232323/async-lua-embed
+```
+
+### Example
 For an example of most of the package's functionality:
 
 ```python
 import asyncio
 import aiohttp as aiohttp
-from src.async_lua import DAO, Environment, CommandExecutor
+from async_lua import DAO, Environment, CommandExecutor
 
 
 class Pokemon(DAO):

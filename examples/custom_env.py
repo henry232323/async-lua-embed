@@ -1,6 +1,6 @@
 import asyncio
 
-from src.async_lua import Environment, CommandExecutor
+from async_lua import Environment, CommandExecutor
 
 code = """
 say("This is a message")

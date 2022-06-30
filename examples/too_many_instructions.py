@@ -1,6 +1,6 @@
 import asyncio
 
-from src.async_lua.executor import CommandExecutor
+from async_lua.executor import CommandExecutor
 
 code = """
 while (true) do
