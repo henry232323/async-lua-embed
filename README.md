@@ -63,7 +63,7 @@ module wholesale.
 - https://github.com/scoder/lupa/issues/47
 - https://github.com/scrapinghub/splash/blob/master/splash/lua_modules/sandbox.lua
 
-### Model:
+### Model
 - Open an executor in which the Lua will be executed
 - Run all Lua in an elaborate sandbox limiting access, memory, and number of instructions
 - No need to kill threads when the sandbox (hopefully) manages itself
