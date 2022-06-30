@@ -19,4 +19,6 @@ class Environment:
         self.globals.sandbox.env[key] = value
 
     async def sleep(self, time):
+        if time > 3600:
+            raise RuntimeError("Can't sleep more than an hour")
         await asyncio.sleep(time)

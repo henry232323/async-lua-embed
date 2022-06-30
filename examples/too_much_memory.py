@@ -1,6 +1,6 @@
 import asyncio
 
-from embed.executor import CommandExecutor
+from src.async_lua.executor import CommandExecutor
 
 code = """
 store = "100000000000000000000000000"

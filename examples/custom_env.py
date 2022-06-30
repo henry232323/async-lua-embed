@@ -1,6 +1,6 @@
 import asyncio
 
-from embed import Environment, CommandExecutor
+from src.async_lua import Environment, CommandExecutor
 
 code = """
 say("This is a message")

@@ -1,0 +1,23 @@
+[build-system]
+requires = ["hatchling", "lupa"]
+build-backend = "hatchling.build"
+
+[project]
+name = "async-lua-embed"
+version = "0.0.1"
+authors = [
+  { name="henry232323" },
+]
+description = "This small package is intended to provide the tools to allow the embedding of user generated scripts into an async environment."
+readme = "README.md"
+license = { file="LICENSE" }
+requires-python = ">=3.7"
+classifiers = [
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: MIT License',
+    'Programming Language :: Python :: 3',
+]
+
+[project.urls]
+"Homepage" = "https://github.com/henry232323/async-lua-embed"
+"Bug Tracker" = "https://github.com/henry232323/async-lua-embed/issues"

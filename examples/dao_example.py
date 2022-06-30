@@ -2,11 +2,10 @@ import asyncio
 
 import aiohttp as aiohttp
 
-from embed import DAO, Environment, CommandExecutor
+from src.async_lua import DAO, Environment, CommandExecutor
 
 
 class Pokemon(DAO):
-
     def __init__(self, dispatch, name):
         super().__init__(dispatch)
         self.name: str = name
