@@ -3,9 +3,11 @@ import asyncio
 from async_lua import Environment, CommandExecutor
 
 code = """
-say("This is a message")
+say("Sending message")
 sleep(1)
-say("This is another message")
+say("...")
+sleep(1)
+say(message)
 """
 
 
@@ -13,6 +15,8 @@ class SayEnv(Environment):
     async def say(self, *args):
         """Prints a message"""
         print(*args)
+
+    message = "Hello world!"
 
 
 async def context():

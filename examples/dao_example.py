@@ -18,8 +18,8 @@ class Pokemon(DAO):
 
 
 class ApiEnvironment(Environment):
-    def __init__(self, exec, dispatch):
-        super().__init__(exec, dispatch)
+    def __init__(self, runtime, dispatch):
+        super().__init__(runtime, dispatch)
 
         self.register("ditto", Pokemon(dispatch, "ditto"))
 

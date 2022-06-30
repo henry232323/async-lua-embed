@@ -12,8 +12,8 @@ say(username .. "!")
 
 
 class SayEnv(Environment):
-    def __init__(self, exec, dispatch):
-        super().__init__(exec, dispatch)
+    def __init__(self, runtime, dispatch):
+        super().__init__(runtime, dispatch)
 
         self.register("username", "henry232323")
 
