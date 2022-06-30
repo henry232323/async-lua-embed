@@ -11,7 +11,7 @@ authors = [
 description = "This small package is intended to provide the tools to allow the embedding of user generated scripts into an async environment."
 readme = "README.md"
 license = { file="LICENSE" }
-requires-python = ">=3.9"
+requires-python = ">=3.7"
 classifiers = [
     'Intended Audience :: Developers',
     'License :: OSI Approved :: MIT License',
