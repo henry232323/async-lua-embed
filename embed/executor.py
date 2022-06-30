@@ -68,7 +68,7 @@ class CommandExecutor:
             )
 
     def _execute(self, code):
-        coro = self.sandbox.run(code).coroutine()
+        coro = self.sandbox.create_coroutine(self.sandbox.run(code)).coroutine()
         last = None
         while True:
             try:

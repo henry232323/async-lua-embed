@@ -1,5 +1,3 @@
-import asyncio
-
 from embed.models.dao import DAO
 
 
