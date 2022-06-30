@@ -1,11 +1,10 @@
 import asyncio
 import concurrent.futures
 import pathlib
-from typing import Type
+from typing import Type, List
 
 from lupa import LuaRuntime
 
-from ._sandbox.sandbox import build_sandbox
 from .environment import Environment
 
 
@@ -21,7 +20,8 @@ Information on Sandboxing
 https://github.com/scrapinghub/splash/blob/master/splash/lua_modules/sandbox.lua
 https://github.com/scoder/lupa/issues/47
 """
-with open(pathlib.Path(__file__).parents[0] / "_sandbox/sandbox.lua") as sbfile:
+
+with open(pathlib.Path(__file__).parents[0] / "sandbox.lua") as sbfile:
     sandbox = sbfile.read()
 
 
@@ -30,36 +30,27 @@ class CommandExecutor:
         self.lua = LuaRuntime(unpack_returned_tuples=True,
                               register_eval=False,
                               attribute_filter=filter_attribute_access)
-        self.env = None
-        self.event_loop = asyncio.get_running_loop()
+        self.envs: List[Environment] = []
 
-        # self.sandbox = build_sandbox(self.lua)
-        # self.dispatch = self.sandbox.create_coroutine
+        self.event_loop = asyncio.get_running_loop()
+        if self.event_loop is None:
+            raise RuntimeError("CommandExecutor must be instantiated in an async context")
 
         self.sandbox = self.lua.execute(sandbox)
         self.lua.globals()['sandbox'] = self.sandbox
         self.dispatch = self.lua.eval("""
             function (func)
                 function inner(...)
-                    coroutine.yield(func, ...)
+                    return coroutine.yield(func, ...)
                 end
                 return inner
             end
         """)
-        # self.dispatch = self.lua.eval("""
-        #     function (func)
-        #         function inner(...)
-        #             return sandbox.create_coroutine(func, ...)
-        #         end
-        #         return inner
-        #     end
-        # """)
 
-        if self.event_loop is None:
-            raise RuntimeError("CommandExecutor must be instantiated in an async context")
+        self.envs.append(Environment(self.lua, self.dispatch))
 
     def register_env(self, env: Type[Environment]):
-        self.env = env(self.lua, self.dispatch)
+        self.envs.append(env(self.lua, self.dispatch))
 
     async def execute(self, code):
         with concurrent.futures.ThreadPoolExecutor() as pool:
@@ -70,9 +61,14 @@ class CommandExecutor:
     def _execute(self, code):
         coro = self.sandbox.create_coroutine(self.sandbox.run(code)).coroutine()
         last = None
+
         while True:
             try:
-                command, *args = coro.send(last)
+                res = coro.send(last)
+                if not isinstance(res, tuple):
+                    res = (res,)
+
+                command, *args = res
                 command_coro = command(*args)
                 future = asyncio.run_coroutine_threadsafe(command_coro, self.event_loop)
                 last = future.result()

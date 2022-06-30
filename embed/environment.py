@@ -1,13 +1,12 @@
 import asyncio
 import inspect
-from functools import partial
-
-from embed.models.item import Item
 
 
 class Environment:
     def __init__(self, exec, dispatch):
         self.globals = exec.globals()
+        self._exec = exec
+        self._dispatch = dispatch
 
         for t in self.__class__.__mro__:
             for key, val in t.__dict__.items():
@@ -16,7 +15,8 @@ class Environment:
                 if inspect.iscoroutinefunction(val):
                     setattr(self.globals.sandbox.env, key, dispatch(val.__get__(self)))
 
-        self.globals.sandbox.env.item = Item(dispatch, "Item name", {})
+    def register(self, key, value):
+        self.globals.sandbox.env[key] = value
 
     async def sleep(self, time):
         await asyncio.sleep(time)
