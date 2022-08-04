@@ -1,6 +1,6 @@
 [build-system]
-requires = ["hatchling", "lupa"]
-build-backend = "hatchling.build"
+requires = ["setuptools>=61.0", "lupa"]
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "async-lua-embed"
