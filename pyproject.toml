@@ -19,7 +19,7 @@ classifiers = [
 ]
 
 [tool.setuptools.package-data]
-myModule = ["*.lua"]
+async_lua = ["*.lua"]
 
 [project.urls]
 "Homepage" = "https://github.com/henry232323/async-lua-embed"
