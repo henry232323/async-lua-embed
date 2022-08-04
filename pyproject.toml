@@ -18,6 +18,9 @@ classifiers = [
     'Programming Language :: Python :: 3',
 ]
 
+[tool.setuptools.package-data]
+myModule = ["*.lua"]
+
 [project.urls]
 "Homepage" = "https://github.com/henry232323/async-lua-embed"
 "Bug Tracker" = "https://github.com/henry232323/async-lua-embed/issues"
