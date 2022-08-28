@@ -132,7 +132,7 @@ sandbox.env = {
   -- http://www.lua.org/manual/5.2/manual.html#6.9
   os = {
     clock = os.clock,
---    date = os.date,        -- from wiki: "This can crash on some platforms (undocumented). For example, os.date'%v'. It is reported that this will be fixed in 5.2 or 5.1.3."
+    date = os.date, -- from wiki: "This can crash on some platforms (undocumented). For example, os.date'%v'. It is reported that this will be fixed in 5.2 or 5.1.3."
     difftime = os.difftime,
     time = os.time,
   },

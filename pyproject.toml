@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "async-lua-embed"
-version = "0.0.1"
+dynamic = ["version"]
 authors = [
   { name="henry232323" },
 ]
@@ -20,6 +20,9 @@ classifiers = [
 
 [tool.setuptools.package-data]
 async_lua = ["*.lua"]
+
+[tool.setuptools.dynamic]
+version = {attr = "project.__version__"}
 
 [project.urls]
 "Homepage" = "https://github.com/henry232323/async-lua-embed"
