@@ -22,7 +22,7 @@ classifiers = [
 async_lua = ["*.lua"]
 
 [tool.setuptools.dynamic]
-version = {attr = "project.__version__"}
+version = {attr = "async_lua.__version__"}
 
 [project.urls]
 "Homepage" = "https://github.com/henry232323/async-lua-embed"
